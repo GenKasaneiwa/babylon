@@ -2,7 +2,7 @@
 <html>
    <head>
       <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-      <title>Test</title>
+      <title>Artist Portfolio: Heesoo Kwon Test</title>
       <!-- BabylonJSのCDN -->
       <script src="https://preview.babylonjs.com/babylon.js"></script>
       <!-- Babylon.jsの3DモデルローダーのCDN -->
@@ -40,59 +40,266 @@
             let engine = new BABYLON.Engine(canvas, true);
 
             let createScene = function () {
-               // sceneオブジェクトの作成
+               // sceneオブジェクトの作成・おまじない
                let scene = new BABYLON.Scene(engine);
-               // カメラの作成とポジションの設定
-               let camera = new BABYLON.FreeCamera(
-                  "camera",
-                  new BABYLON.Vector3(0, 5, -10),
-                  scene
-               );
 
+               // 移動カメラ
+               // let camera = new BABYLON.FreeCamera(
+               //    "camera",
+               //    new BABYLON.Vector3(0, 5, -10),
+               //    scene
+               // );
                // カメラの初期方向（target）の座標を設定
-               camera.setTarget(BABYLON.Vector3.Zero());
+               // camera.setTarget(BABYLON.Vector3.Zero());
 
                // attachControlを設定
                // これを設定することでマウスでぐりぐり視点移動ができる
-               camera.attachControl(canvas, false);
+               // camera.attachControl(canvas, false);
+
+               //定点カメラ
+               var camera = new BABYLON.ArcRotateCamera(
+                  "Camera",
+                  -Math.PI / 2,
+                  Math.PI / 2,
+                  5,
+                  BABYLON.Vector3.Zero(),
+                  scene
+               );
+               camera.attachControl(canvas, true);
+               camera.inputs.attached.mousewheel.detachControl(canvas);
+
+               //360度画像
+               var dome = new BABYLON.PhotoDome(
+                  "testdome",
+                  "./assets/textures/universe.jpg",
+                  {
+                     resolution: 32,
+                     size: 1000,
+                  },
+                  scene
+               );
+
+               //image1
+               const mat1 = new BABYLON.StandardMaterial("");
+               mat1.diffuseTexture = new BABYLON.Texture(
+                  "./assets/img/premolt1.jpg"
+               );
+
+               const f1 = new BABYLON.Vector4(0, 0, 1, 1); // front image = half the whole image along the width
+               const b1 = new BABYLON.Vector4(1, 0, 1, 1); // back image = second half along the width
+
+               const photo1 = BABYLON.MeshBuilder.CreatePlane("photo1", {
+                  frontUVs: f1,
+                  backUVs: b1,
+                  sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+                  height: 5,
+                  width: 6,
+               });
+               photo1.material = mat1;
+               photo1.position.x = -6;
+               photo1.position.y = 0;
+               photo1.position.z = 8;
+               photo1.rotation.y = (332 * Math.PI) / 180;
+
+               //image1 link func
+               photo1.actionManager = new BABYLON.ActionManager(scene);
+               photo1.actionManager.registerAction(
+                  new BABYLON.ExecuteCodeAction(
+                     BABYLON.ActionManager.OnPickTrigger,
+                     function (event) {
+                        var pickedMesh = event.meshUnderPointer;
+
+                        window.open(
+                           "https://www.heesookwon.com/"
+                        );
+                     }
+                  )
+               );
+
+               //image1
+               const mat2 = new BABYLON.StandardMaterial("");
+               mat2.diffuseTexture = new BABYLON.Texture(
+                  "./assets/img/premolt2.jpg"
+               );
+
+               const f2 = new BABYLON.Vector4(0, 0, 1, 1); // front image = half the whole image along the width
+               const b2 = new BABYLON.Vector4(1, 0, 1, 1); // back image = second half along the width
+
+               const photo2 = BABYLON.MeshBuilder.CreatePlane("photo2", {
+                  frontUVs: f2,
+                  backUVs: b2,
+                  sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+                  height: 5,
+                  width: 6,
+               });
+               photo2.material = mat2;
+               photo2.position.x = 6;
+               photo2.position.y = 0;
+               photo2.position.z = 8;
+               photo2.rotation.y = (57 * Math.PI) / 180;
+
+               //image2 link func
+               photo2.actionManager = new BABYLON.ActionManager(scene);
+               photo2.actionManager.registerAction(
+                  new BABYLON.ExecuteCodeAction(
+                     BABYLON.ActionManager.OnPickTrigger,
+                     function (event) {
+                        var pickedMesh = event.meshUnderPointer;
+
+                        window.open(
+                           "https://www.heesookwon.com/"
+                        );
+                     }
+                  )
+               );
+
+               //image1
+               const mat3 = new BABYLON.StandardMaterial("");
+               mat3.diffuseTexture = new BABYLON.Texture(
+                  "./assets/img/premolt3.jpg"
+               );
+
+               const f3 = new BABYLON.Vector4(0, 0, 1, 1); // front image = half the whole image along the width
+               const b3 = new BABYLON.Vector4(1, 0, 1, 1); // back image = second half along the width
+
+               const photo3 = BABYLON.MeshBuilder.CreatePlane("photo3", {
+                  frontUVs: f3,
+                  backUVs: b3,
+                  sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+                  height: 5,
+                  width: 6,
+               });
+               photo3.material = mat3;
+               photo3.position.x = 0;
+               photo3.position.y = 6;
+               photo3.position.z = 8;
+               photo3.rotation.x = (319 * Math.PI) / 180;
+
+               //image1 link func
+               photo3.actionManager = new BABYLON.ActionManager(scene);
+               photo3.actionManager.registerAction(
+                  new BABYLON.ExecuteCodeAction(
+                     BABYLON.ActionManager.OnPickTrigger,
+                     function (event) {
+                        var pickedMesh = event.meshUnderPointer;
+
+                        window.open(
+                           "https://www.heesookwon.com/"
+                        );
+                     }
+                  )
+               );
+
+               //video
+               var planeOpts = {
+                  height: 5.4762,
+                  width: 7.3967,
+                  sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               };
+               var ANote0Video = BABYLON.MeshBuilder.CreatePlane(
+                  "plane",
+                  planeOpts,
+                  scene
+               );
+               var vidPos = new BABYLON.Vector3(0, 0, 13);
+               ANote0Video.position = vidPos;
+               var ANote0VideoMat = new BABYLON.StandardMaterial("m", scene);
+               var ANote0VideoVidTex = new BABYLON.VideoTexture(
+                  "vidtex",
+                  "./assets/video/withmom.mp4",
+                  scene
+               );
+               ANote0VideoMat.diffuseTexture = ANote0VideoVidTex;
+               ANote0VideoMat.roughness = 1;
+               ANote0VideoMat.emissiveColor = new BABYLON.Color3.White();
+               ANote0Video.material = ANote0VideoMat;
+               scene.onPointerObservable.add(function (evt) {
+                  if (evt.pickInfo.pickedMesh === ANote0Video) {
+                     //console.log("picked");
+                     if (ANote0VideoVidTex.video.paused)
+                        ANote0VideoVidTex.video.play();
+                     else ANote0VideoVidTex.video.pause();
+                     console.log(
+                        ANote0VideoVidTex.video.paused ? "paused" : "playing"
+                     );
+                  }
+               }, BABYLON.PointerEventTypes.POINTERPICK);
 
                //▼ 3d model setup ▼--------------------------
 
-        
-               BABYLON.SceneLoader.ImportMeshAsync("", "./assets/model/", "L_idle_animation.glb", scene).then(function(result) {
-                  museumMesh = result.meshes[0].scaling = new BABYLON.Vector3(2,2,2);
-                  result.meshes[0].position.x = -2;
+               BABYLON.SceneLoader.ImportMeshAsync(
+                  "",
+                  "./assets/model/",
+                  "M_happy.glb",
+                  scene
+               ).then(function (result) {
+                  heesoo_human = result.meshes[0].scaling = new BABYLON.Vector3(
+                     1,
+                     1,
+                     1
+                  );
+                  result.meshes[0].position.x = -1;
+                  result.meshes[0].position.y = 0;
+                  result.meshes[0].position.z = -1;
+
+                  rotateX = 39;
+                  rotateY = 153;
+                  rotateZ = 0;
+
+                  result.meshes[0].rotation = new BABYLON.Vector3(
+                     (rotateX * Math.PI) / 180,
+                     (rotateY * Math.PI) / 180,
+                     (rotateZ * Math.PI) / 180
+                  );
                });
 
-                       
-               BABYLON.SceneLoader.ImportMeshAsync("", "./assets/model/", "th_talking animation.glb", scene).then(function(result) {
-                  museumMesh = result.meshes[0].scaling = new BABYLON.Vector3(.6,.6,.6);
-                  result.meshes[0].position.x = 2;
+               BABYLON.SceneLoader.ImportMeshAsync(
+                  "",
+                  "./assets/model/",
+                  "ML_happy.glb",
+                  scene
+               ).then(function (result) {
+                  heesoo_snake = result.meshes[0].scaling = new BABYLON.Vector3(
+                     1,
+                     1,
+                     1
+                  );
+                  result.meshes[0].position.x = 1;
+                  result.meshes[0].position.y = -0.8;
+                  result.meshes[0].position.z = -2;
+
+                  rotateX = 20;
+                  rotateY = 272;
+                  rotateZ = 44;
+
+                  result.meshes[0].rotation = new BABYLON.Vector3(
+                     (rotateX * Math.PI) / 180,
+                     (rotateY * Math.PI) / 180,
+                     (rotateZ * Math.PI) / 180
+                  );
                });
 
                // BABYLON.SceneLoader.ImportMeshAsync("", "./assets/model/", "test-proccessed.glb", scene).then(function(result) {
                //    museumMesh = result.meshes[0].scaling = new BABYLON.Vector3(.6,.6,.6);
-                 
+
                //    result.meshes[0].position.x = 2;
                // });
 
+               // BABYLON.SceneLoader.ImportMeshAsync("", "./assets/model/", "etal_c4d.glb", scene).then(function(result) {
+               //    museumMesh = result.meshes[0].scaling = new BABYLON.Vector3(5,5,5);
+               //    result.meshes[0].position.x = 3;
+               //    result.meshes[0].position.y = 3;
+               //    result.meshes[0].position.z = -8;
 
-               BABYLON.SceneLoader.ImportMeshAsync("", "./assets/model/", "etal_c4d.glb", scene).then(function(result) {
-                  museumMesh = result.meshes[0].scaling = new BABYLON.Vector3(5,5,5);
-                  result.meshes[0].position.x = 3;
-                  result.meshes[0].position.y = 3;
-                  result.meshes[0].position.z = -8;
+               //    rotateX = -12;
+               //    rotateY = -20;
+               //    rotateZ = 2;
 
-                  rotateX = -12;
-                  rotateY = -20;
-                  rotateZ = 2;
+               //    result.meshes[0].rotation = new BABYLON.Vector3(rotateX * Math.PI / 180 , rotateY * Math.PI / 180, rotateZ * Math.PI / 180);
 
-                  result.meshes[0].rotation = new BABYLON.Vector3(rotateX * Math.PI / 180 , rotateY * Math.PI / 180, rotateZ * Math.PI / 180);
-
-               });
+               // });
 
                //△ 3d model setup △--------------------------
-
 
                // ライトの作成
                let light = new BABYLON.HemisphericLight(
@@ -100,7 +307,6 @@
                   new BABYLON.Vector3(0, 1, 0),
                   scene
                );
-
 
                // let sphere = BABYLON.MeshBuilder.CreateSphere(
                //    "sphere",
@@ -125,20 +331,16 @@
             let scene = createScene();
             engine.runRenderLoop(function () {
                scene.render();
-               // scene.debugLayer.show();
+               scene.debugLayer.show();
             });
 
             //背景色変更
-            scene.clearColor = new BABYLON.Color3(0.5, 0.8, 0.5);
-
-          
+            scene.clearColor = new BABYLON.Color3(0, 0, 0);
          });
 
          window.addEventListener("resize", function () {
             engine.resize();
          });
-
-         
       </script>
    </body>
 </html>
