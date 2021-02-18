@@ -127,8 +127,8 @@
 
                scene.onPointerDown = function (evt, pickResult) {
                   if (
-                     // pickResult.hit &&
-                     // pickResult.pickedMesh.name !== "ground"
+                     pickResult.hit &&
+                     pickResult.pickedMesh.name !== "ground"
                   ) {
                      makeLine(root.position, pickResult.pickedMesh.position, 2);
                      console.log(pickResult.pickedMesh.position);
