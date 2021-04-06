@@ -11,6 +11,7 @@
       <script src="https://code.jquery.com/pep/0.4.1/pep.js"></script>
    </head>
    <body>
+      <h1 class="logo">Heesoo Test Da yo</h1>
       <canvas id="renderCanvas"></canvas>
 
       <style>
@@ -21,6 +22,7 @@
             height: 100%;
             margin: 0;
             padding: 0;
+            position: relative;
          }
 
          #renderCanvas {
@@ -28,16 +30,25 @@
             height: 100%;
             touch-action: none;
          }
+
+         .logo {
+            position: absolute;
+            top: 0px;
+            left: 40px;
+            font-size: 4rem;
+            font-weight: bold;
+            color: #fff;
+         }
       </style>
 
       <script>
+         // canvasの定義
+         let canvas = document.getElementById("renderCanvas");
+         // 3D engineのロード
+         let engine = new BABYLON.Engine(canvas, true);
+
          window.addEventListener("DOMContentLoaded", function () {
             // ここにシーンを作るスクリプトを記述する
-
-            // canvasの定義
-            let canvas = document.getElementById("renderCanvas");
-            // 3D engineのロード
-            let engine = new BABYLON.Engine(canvas, true);
 
             let createScene = function () {
                // sceneオブジェクトの作成・おまじない
@@ -65,162 +76,261 @@
                   BABYLON.Vector3.Zero(),
                   scene
                );
-               camera.attachControl(canvas, true);
+               // camera.attachControl(canvas, true);
                camera.inputs.attached.mousewheel.detachControl(canvas);
 
                //360度画像
-               var dome = new BABYLON.PhotoDome(
-                  "testdome",
-                  "./assets/textures/universe2.jpg",
-                  {
-                     resolution: 32,
-                     size: 1000,
-                  },
-                  scene
-               );
+               // var dome = new BABYLON.PhotoDome(
+               //    "testdome",
+               //    "./assets/textures/universe2.jpg",
+               //    {
+               //       resolution: 32,
+               //       size: 1000,
+               //    },
+               //    scene
+               // );
 
                //image1
-               const mat1 = new BABYLON.StandardMaterial("");
-               mat1.diffuseTexture = new BABYLON.Texture(
-                  "./assets/img/premolt1.jpg"
-               );
+               // const mat1 = new BABYLON.StandardMaterial("");
+               // mat1.diffuseTexture = new BABYLON.Texture(
+               //    "./assets/img/premolt1.jpg"
+               // );
 
-               const f1 = new BABYLON.Vector4(0, 0, 1, 1); // front image = half the whole image along the width
-               const b1 = new BABYLON.Vector4(1, 0, 1, 1); // back image = second half along the width
+               // const f1 = new BABYLON.Vector4(0, 0, 1, 1); // front image = half the whole image along the width
+               // const b1 = new BABYLON.Vector4(1, 0, 1, 1); // back image = second half along the width
 
-               const photo1 = BABYLON.MeshBuilder.CreatePlane("photo1", {
-                  frontUVs: f1,
-                  backUVs: b1,
-                  sideOrientation: BABYLON.Mesh.DOUBLESIDE,
-                  height: 5,
-                  width: 6,
-               });
-               photo1.material = mat1;
-               photo1.position.x = -6;
-               photo1.position.y = 0;
-               photo1.position.z = 8;
-               photo1.rotation.y = (332 * Math.PI) / 180;
+               // const photo1 = BABYLON.MeshBuilder.CreatePlane("photo1", {
+               //    frontUVs: f1,
+               //    backUVs: b1,
+               //    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               //    height: 5,
+               //    width: 6,
+               // });
+               // photo1.material = mat1;
+               // photo1.position.x = -6;
+               // photo1.position.y = 0;
+               // photo1.position.z = 8;
+               // photo1.rotation.y = (332 * Math.PI) / 180;
 
-               //image1 link func
-               photo1.actionManager = new BABYLON.ActionManager(scene);
-               photo1.actionManager.registerAction(
-                  new BABYLON.ExecuteCodeAction(
-                     BABYLON.ActionManager.OnPickTrigger,
-                     function (event) {
-                        var pickedMesh = event.meshUnderPointer;
+               // //image1 link func
+               // photo1.actionManager = new BABYLON.ActionManager(scene);
+               // photo1.actionManager.registerAction(
+               //    new BABYLON.ExecuteCodeAction(
+               //       BABYLON.ActionManager.OnPickTrigger,
+               //       function (event) {
+               //          var pickedMesh = event.meshUnderPointer;
 
-                        window.open(
-                           "https://www.heesookwon.com/"
-                        );
-                     }
-                  )
-               );
+               //          window.open("https://www.heesookwon.com/");
+               //       }
+               //    )
+               // );
 
                //image1
-               const mat2 = new BABYLON.StandardMaterial("");
-               mat2.diffuseTexture = new BABYLON.Texture(
-                  "./assets/img/premolt2.jpg"
-               );
+               // const mat2 = new BABYLON.StandardMaterial("");
+               // mat2.diffuseTexture = new BABYLON.Texture(
+               //    "./assets/img/premolt2.jpg"
+               // );
 
-               const f2 = new BABYLON.Vector4(0, 0, 1, 1); // front image = half the whole image along the width
-               const b2 = new BABYLON.Vector4(1, 0, 1, 1); // back image = second half along the width
+               // const f2 = new BABYLON.Vector4(0, 0, 1, 1); // front image = half the whole image along the width
+               // const b2 = new BABYLON.Vector4(1, 0, 1, 1); // back image = second half along the width
 
-               const photo2 = BABYLON.MeshBuilder.CreatePlane("photo2", {
-                  frontUVs: f2,
-                  backUVs: b2,
-                  sideOrientation: BABYLON.Mesh.DOUBLESIDE,
-                  height: 5,
-                  width: 6,
-               });
-               photo2.material = mat2;
-               photo2.position.x = 6;
-               photo2.position.y = 0;
-               photo2.position.z = 8;
-               photo2.rotation.y = (57 * Math.PI) / 180;
+               // const photo2 = BABYLON.MeshBuilder.CreatePlane("photo2", {
+               //    frontUVs: f2,
+               //    backUVs: b2,
+               //    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               //    height: 5,
+               //    width: 6,
+               // });
+               // photo2.material = mat2;
+               // photo2.position.x = 6;
+               // photo2.position.y = 0;
+               // photo2.position.z = 8;
+               // photo2.rotation.y = (57 * Math.PI) / 180;
 
-               //image2 link func
-               photo2.actionManager = new BABYLON.ActionManager(scene);
-               photo2.actionManager.registerAction(
-                  new BABYLON.ExecuteCodeAction(
-                     BABYLON.ActionManager.OnPickTrigger,
-                     function (event) {
-                        var pickedMesh = event.meshUnderPointer;
+               // //image2 link func
+               // photo2.actionManager = new BABYLON.ActionManager(scene);
+               // photo2.actionManager.registerAction(
+               //    new BABYLON.ExecuteCodeAction(
+               //       BABYLON.ActionManager.OnPickTrigger,
+               //       function (event) {
+               //          var pickedMesh = event.meshUnderPointer;
 
-                        window.open(
-                           "https://www.heesookwon.com/"
-                        );
-                     }
-                  )
-               );
+               //          window.open("https://www.heesookwon.com/");
+               //       }
+               //    )
+               // );
 
                //image1
-               const mat3 = new BABYLON.StandardMaterial("");
-               mat3.diffuseTexture = new BABYLON.Texture(
-                  "./assets/img/premolt3.jpg"
-               );
+               // const mat3 = new BABYLON.StandardMaterial("");
+               // mat3.diffuseTexture = new BABYLON.Texture(
+               //    "./assets/img/premolt3.jpg"
+               // );
 
-               const f3 = new BABYLON.Vector4(0, 0, 1, 1); // front image = half the whole image along the width
-               const b3 = new BABYLON.Vector4(1, 0, 1, 1); // back image = second half along the width
+               // const f3 = new BABYLON.Vector4(0, 0, 1, 1); // front image = half the whole image along the width
+               // const b3 = new BABYLON.Vector4(1, 0, 1, 1); // back image = second half along the width
 
-               const photo3 = BABYLON.MeshBuilder.CreatePlane("photo3", {
-                  frontUVs: f3,
-                  backUVs: b3,
-                  sideOrientation: BABYLON.Mesh.DOUBLESIDE,
-                  height: 5,
-                  width: 6,
-               });
-               photo3.material = mat3;
-               photo3.position.x = 0;
-               photo3.position.y = 6;
-               photo3.position.z = 8;
-               photo3.rotation.x = (319 * Math.PI) / 180;
+               // const photo3 = BABYLON.MeshBuilder.CreatePlane("photo3", {
+               //    frontUVs: f3,
+               //    backUVs: b3,
+               //    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               //    height: 5,
+               //    width: 6,
+               // });
+               // photo3.material = mat3;
+               // photo3.position.x = 0;
+               // photo3.position.y = 6;
+               // photo3.position.z = 8;
+               // photo3.rotation.x = (319 * Math.PI) / 180;
 
-               //image1 link func
-               photo3.actionManager = new BABYLON.ActionManager(scene);
-               photo3.actionManager.registerAction(
-                  new BABYLON.ExecuteCodeAction(
-                     BABYLON.ActionManager.OnPickTrigger,
-                     function (event) {
-                        var pickedMesh = event.meshUnderPointer;
+               // //image1 link func
+               // photo3.actionManager = new BABYLON.ActionManager(scene);
+               // photo3.actionManager.registerAction(
+               //    new BABYLON.ExecuteCodeAction(
+               //       BABYLON.ActionManager.OnPickTrigger,
+               //       function (event) {
+               //          var pickedMesh = event.meshUnderPointer;
 
-                        window.open(
-                           "https://www.heesookwon.com/"
-                        );
-                     }
-                  )
-               );
+               //          window.open("https://www.heesookwon.com/");
+               //       }
+               //    )
+               // );
 
-               //video
-               var planeOpts = {
+               //video1
+               var planeOpts1 = {
                   height: 5.4762,
                   width: 7.3967,
                   sideOrientation: BABYLON.Mesh.DOUBLESIDE,
                };
-               var ANote0Video = BABYLON.MeshBuilder.CreatePlane(
+               var ANote0Video1 = BABYLON.MeshBuilder.CreatePlane(
                   "plane",
-                  planeOpts,
+                  planeOpts1,
                   scene
                );
-               var vidPos = new BABYLON.Vector3(0, 0, 13);
-               ANote0Video.position = vidPos;
-               var ANote0VideoMat = new BABYLON.StandardMaterial("m", scene);
-               var ANote0VideoVidTex = new BABYLON.VideoTexture(
+               var vidPos1 = new BABYLON.Vector3(0, 0, 13);
+               ANote0Video1.position = vidPos1;
+               var ANote0VideoMat1 = new BABYLON.StandardMaterial("m", scene);
+               var ANote0VideoVidTex1 = new BABYLON.VideoTexture(
                   "vidtex",
                   "./assets/video/withmom.mp4",
                   scene
                );
-               ANote0VideoMat.diffuseTexture = ANote0VideoVidTex;
-               ANote0VideoMat.roughness = 1;
-               ANote0VideoMat.emissiveColor = new BABYLON.Color3.White();
-               ANote0Video.material = ANote0VideoMat;
+               ANote0VideoMat1.diffuseTexture = ANote0VideoVidTex1;
+               ANote0VideoMat1.roughness = 1;
+               ANote0VideoMat1.emissiveColor = new BABYLON.Color3.White();
+               ANote0Video1.material = ANote0VideoMat1;
                scene.onPointerObservable.add(function (evt) {
-                  if (evt.pickInfo.pickedMesh === ANote0Video) {
+                  if (evt.pickInfo.pickedMesh === ANote0Video1) {
                      //console.log("picked");
-                     if (ANote0VideoVidTex.video.paused)
-                        ANote0VideoVidTex.video.play();
-                     else ANote0VideoVidTex.video.pause();
+                     if (ANote0VideoVidTex1.video.paused)
+                        ANote0VideoVidTex1.video.play();
+                     else ANote0VideoVidTex1.video.pause();
                      console.log(
-                        ANote0VideoVidTex.video.paused ? "paused" : "playing"
+                        ANote0VideoVidTex1.video.paused ? "paused" : "playing"
+                     );
+                  }
+               }, BABYLON.PointerEventTypes.POINTERPICK);
+
+               //video2
+               var planeOpts2 = {
+                  height: 5.4762,
+                  width: 7.3967,
+                  sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               };
+               var ANote0Video2 = BABYLON.MeshBuilder.CreatePlane(
+                  "plane",
+                  planeOpts2,
+                  scene
+               );
+               var vidPos2 = new BABYLON.Vector3(10, 7, 13);
+               ANote0Video2.position = vidPos2;
+               var ANote0VideoMat2 = new BABYLON.StandardMaterial("m", scene);
+               var ANote0VideoVidTex2 = new BABYLON.VideoTexture(
+                  "vidtex",
+                  "./assets/video/withmom.mp4",
+                  scene
+               );
+               ANote0VideoMat2.diffuseTexture = ANote0VideoVidTex2;
+               ANote0VideoMat2.roughness = 1;
+               ANote0VideoMat2.emissiveColor = new BABYLON.Color3.White();
+               ANote0Video2.material = ANote0VideoMat2;
+               scene.onPointerObservable.add(function (evt) {
+                  if (evt.pickInfo.pickedMesh === ANote0Video2) {
+                     //console.log("picked");
+                     if (ANote0VideoVidTex2.video.paused)
+                        ANote0VideoVidTex2.video.play();
+                     else ANote0VideoVidTex2.video.pause();
+                     console.log(
+                        ANote0VideoVidTex2.video.paused ? "paused" : "playing"
+                     );
+                  }
+               }, BABYLON.PointerEventTypes.POINTERPICK);
+
+               //video3
+               var planeOpts3 = {
+                  height: 5.4762,
+                  width: 7.3967,
+                  sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               };
+               var ANote0Video3 = BABYLON.MeshBuilder.CreatePlane(
+                  "plane",
+                  planeOpts3,
+                  scene
+               );
+               var vidPos3 = new BABYLON.Vector3(-10, 4, 13);
+               ANote0Video3.position = vidPos3;
+               var ANote0VideoMat3 = new BABYLON.StandardMaterial("m", scene);
+               var ANote0VideoVidTex3 = new BABYLON.VideoTexture(
+                  "vidtex",
+                  "./assets/video/withmom.mp4",
+                  scene
+               );
+               ANote0VideoMat3.diffuseTexture = ANote0VideoVidTex3;
+               ANote0VideoMat3.roughness = 1;
+               ANote0VideoMat3.emissiveColor = new BABYLON.Color3.White();
+               ANote0Video3.material = ANote0VideoMat3;
+               scene.onPointerObservable.add(function (evt) {
+                  if (evt.pickInfo.pickedMesh === ANote0Video3) {
+                     //console.log("picked");
+                     if (ANote0VideoVidTex3.video.paused)
+                        ANote0VideoVidTex3.video.play();
+                     else ANote0VideoVidTex3.video.pause();
+                     console.log(
+                        ANote0VideoVidTex3.video.paused ? "paused" : "playing"
+                     );
+                  }
+               }, BABYLON.PointerEventTypes.POINTERPICK);
+
+               //video4
+               var planeOpts4 = {
+                  height: 5.4762,
+                  width: 7.3967,
+                  sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               };
+               var ANote0Video4 = BABYLON.MeshBuilder.CreatePlane(
+                  "plane",
+                  planeOpts4,
+                  scene
+               );
+               var vidPos4 = new BABYLON.Vector3(-10, 1, 20);
+               ANote0Video4.position = vidPos4;
+               var ANote0VideoMat4 = new BABYLON.StandardMaterial("m", scene);
+               var ANote0VideoVidTex4 = new BABYLON.VideoTexture(
+                  "vidtex",
+                  "./assets/video/withmom.mp4",
+                  scene
+               );
+               ANote0VideoMat4.diffuseTexture = ANote0VideoVidTex4;
+               ANote0VideoMat4.roughness = 1;
+               ANote0VideoMat4.emissiveColor = new BABYLON.Color3.White();
+               ANote0Video4.material = ANote0VideoMat4;
+               scene.onPointerObservable.add(function (evt) {
+                  if (evt.pickInfo.pickedMesh === ANote0Video4) {
+                     //console.log("picked");
+                     if (ANote0VideoVidTex4.video.paused)
+                        ANote0VideoVidTex4.video.play();
+                     else ANote0VideoVidTex4.video.pause();
+                     console.log(
+                        ANote0VideoVidTex4.video.paused ? "paused" : "playing"
                      );
                   }
                }, BABYLON.PointerEventTypes.POINTERPICK);
@@ -239,11 +349,11 @@
                      1
                   );
                   result.meshes[0].position.x = -1;
-                  result.meshes[0].position.y = 0;
-                  result.meshes[0].position.z = -1;
+                  result.meshes[0].position.y = -0.961;
+                  result.meshes[0].position.z = -2;
 
-                  rotateX = 39;
-                  rotateY = 153;
+                  rotateX = 0;
+                  rotateY = 188;
                   rotateZ = 0;
 
                   result.meshes[0].rotation = new BABYLON.Vector3(
@@ -265,12 +375,12 @@
                      1
                   );
                   result.meshes[0].position.x = 1;
-                  result.meshes[0].position.y = -0.8;
+                  result.meshes[0].position.y = -0.961;
                   result.meshes[0].position.z = -2;
 
-                  rotateX = 20;
-                  rotateY = 272;
-                  rotateZ = 44;
+                  rotateX = 0;
+                  rotateY = 188;
+                  rotateZ = 0;
 
                   result.meshes[0].rotation = new BABYLON.Vector3(
                      (rotateX * Math.PI) / 180,
@@ -279,31 +389,31 @@
                   );
                });
 
-               BABYLON.SceneLoader.ImportMeshAsync(
-                  "",
-                  "./assets/model/",
-                  "china10.glb",
-                  scene
-               ).then(function (result) {
-                  heesoo_snake = result.meshes[0].scaling = new BABYLON.Vector3(
-                     100,
-                     100,
-                     100
-                  );
-                  result.meshes[0].position.x = 1;
-                  result.meshes[0].position.y = -0.8;
-                  result.meshes[0].position.z = -2;
+               // BABYLON.SceneLoader.ImportMeshAsync(
+               //    "",
+               //    "./assets/model/",
+               //    "china10.glb",
+               //    scene
+               // ).then(function (result) {
+               //    heesoo_snake = result.meshes[0].scaling = new BABYLON.Vector3(
+               //       100,
+               //       100,
+               //       100
+               //    );
+               //    result.meshes[0].position.x = 1;
+               //    result.meshes[0].position.y = -0.8;
+               //    result.meshes[0].position.z = -2;
 
-                  rotateX = 20;
-                  rotateY = 272;
-                  rotateZ = 44;
+               //    rotateX = 20;
+               //    rotateY = 272;
+               //    rotateZ = 44;
 
-                  result.meshes[0].rotation = new BABYLON.Vector3(
-                     (rotateX * Math.PI) / 180,
-                     (rotateY * Math.PI) / 180,
-                     (rotateZ * Math.PI) / 180
-                  );
-               });
+               //    result.meshes[0].rotation = new BABYLON.Vector3(
+               //       (rotateX * Math.PI) / 180,
+               //       (rotateY * Math.PI) / 180,
+               //       (rotateZ * Math.PI) / 180
+               //    );
+               // });
 
                // BABYLON.SceneLoader.ImportMeshAsync("", "./assets/model/", "test-proccessed.glb", scene).then(function(result) {
                //    museumMesh = result.meshes[0].scaling = new BABYLON.Vector3(.6,.6,.6);
@@ -361,7 +471,7 @@
             });
 
             //背景色変更
-            scene.clearColor = new BABYLON.Color3(0, 0, 0);
+            scene.clearColor = new BABYLON.Color3(0.5, 0.8, 0.5);
          });
 
          window.addEventListener("resize", function () {
