@@ -221,6 +221,7 @@
                scene.onPointerObservable.add(function (evt) {
                   if (evt.pickInfo.pickedMesh === ANote0Video1) {
                      //console.log("picked");
+                     ANote0VideoVidTex1.video.pause();
                      if (ANote0VideoVidTex1.video.paused)
                         ANote0VideoVidTex1.video.play();
                      else ANote0VideoVidTex1.video.pause();
