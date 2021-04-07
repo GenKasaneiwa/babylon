@@ -76,13 +76,13 @@
                   BABYLON.Vector3.Zero(),
                   scene
                );
-               // camera.attachControl(canvas, true);
+               camera.attachControl(canvas, true);
                camera.inputs.attached.mousewheel.detachControl(canvas);
 
                //360度画像
                // var dome = new BABYLON.PhotoDome(
                //    "testdome",
-               //    "./assets/textures/universe2.jpg",
+               //    "./assets/video/bg.mp4",
                //    {
                //       resolution: 32,
                //       size: 1000,
@@ -197,8 +197,8 @@
 
                //video1
                var planeOpts1 = {
-                  height: 5.4762,
-                  width: 7.3967,
+                  height: 3,
+                  width: 4,
                   sideOrientation: BABYLON.Mesh.DOUBLESIDE,
                };
                var ANote0Video1 = BABYLON.MeshBuilder.CreatePlane(
@@ -206,12 +206,12 @@
                   planeOpts1,
                   scene
                );
-               var vidPos1 = new BABYLON.Vector3(0, 0, 13);
+               var vidPos1 = new BABYLON.Vector3(1.9, 2, 4);
                ANote0Video1.position = vidPos1;
                var ANote0VideoMat1 = new BABYLON.StandardMaterial("m", scene);
                var ANote0VideoVidTex1 = new BABYLON.VideoTexture(
                   "vidtex",
-                  "./assets/video/withmom.mp4",
+                  "./assets/video/1.mp4",
                   scene
                );
                ANote0VideoMat1.diffuseTexture = ANote0VideoVidTex1;
@@ -233,8 +233,8 @@
 
                //video2
                var planeOpts2 = {
-                  height: 5.4762,
-                  width: 7.3967,
+                  height: 2,
+                  width: 4,
                   sideOrientation: BABYLON.Mesh.DOUBLESIDE,
                };
                var ANote0Video2 = BABYLON.MeshBuilder.CreatePlane(
@@ -242,12 +242,13 @@
                   planeOpts2,
                   scene
                );
-               var vidPos2 = new BABYLON.Vector3(10, 7, 13);
+               var vidPos2 = new BABYLON.Vector3(3, 0, 0);
+               ANote0Video2.rotation.y = (37.4 * Math.PI) / 180;
                ANote0Video2.position = vidPos2;
                var ANote0VideoMat2 = new BABYLON.StandardMaterial("m", scene);
                var ANote0VideoVidTex2 = new BABYLON.VideoTexture(
                   "vidtex",
-                  "./assets/video/withmom.mp4",
+                  "./assets/video/2.mp4",
                   scene
                );
                ANote0VideoMat2.diffuseTexture = ANote0VideoVidTex2;
@@ -268,8 +269,8 @@
 
                //video3
                var planeOpts3 = {
-                  height: 5.4762,
-                  width: 7.3967,
+                  height: 2.5,
+                  width: 4,
                   sideOrientation: BABYLON.Mesh.DOUBLESIDE,
                };
                var ANote0Video3 = BABYLON.MeshBuilder.CreatePlane(
@@ -277,12 +278,12 @@
                   planeOpts3,
                   scene
                );
-               var vidPos3 = new BABYLON.Vector3(-10, 4, 13);
+               var vidPos3 = new BABYLON.Vector3(-2.5, 1.5, 3);
                ANote0Video3.position = vidPos3;
                var ANote0VideoMat3 = new BABYLON.StandardMaterial("m", scene);
                var ANote0VideoVidTex3 = new BABYLON.VideoTexture(
                   "vidtex",
-                  "./assets/video/withmom.mp4",
+                  "./assets/video/3.mp4",
                   scene
                );
                ANote0VideoMat3.diffuseTexture = ANote0VideoVidTex3;
@@ -303,8 +304,8 @@
 
                //video4
                var planeOpts4 = {
-                  height: 5.4762,
-                  width: 7.3967,
+                  height: 2,
+                  width: 3,
                   sideOrientation: BABYLON.Mesh.DOUBLESIDE,
                };
                var ANote0Video4 = BABYLON.MeshBuilder.CreatePlane(
@@ -312,12 +313,13 @@
                   planeOpts4,
                   scene
                );
-               var vidPos4 = new BABYLON.Vector3(-10, 1, 20);
+               var vidPos4 = new BABYLON.Vector3(-3, -1, 0);
                ANote0Video4.position = vidPos4;
+               ANote0Video4.rotation.y = (125 * Math.PI) / 180;
                var ANote0VideoMat4 = new BABYLON.StandardMaterial("m", scene);
                var ANote0VideoVidTex4 = new BABYLON.VideoTexture(
                   "vidtex",
-                  "./assets/video/withmom.mp4",
+                  "./assets/video/4.mp4",
                   scene
                );
                ANote0VideoMat4.diffuseTexture = ANote0VideoVidTex4;
@@ -332,6 +334,41 @@
                      else ANote0VideoVidTex4.video.pause();
                      console.log(
                         ANote0VideoVidTex4.video.paused ? "paused" : "playing"
+                     );
+                  }
+               }, BABYLON.PointerEventTypes.POINTERPICK);
+
+               //video5
+               var planeOpts5 = {
+                  height: 80,
+                  width: 150,
+                  sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               };
+               var ANote0Video5 = BABYLON.MeshBuilder.CreatePlane(
+                  "plane",
+                  planeOpts5,
+                  scene
+               );
+               var vidPos5 = new BABYLON.Vector3(0, 0, 50);
+               ANote0Video5.position = vidPos5;
+               var ANote0VideoMat5 = new BABYLON.StandardMaterial("m", scene);
+               var ANote0VideoVidTex5 = new BABYLON.VideoTexture(
+                  "vidtex",
+                  "./assets/video/5.mp4",
+                  scene
+               );
+               ANote0VideoMat5.diffuseTexture = ANote0VideoVidTex5;
+               ANote0VideoMat5.roughness = 1;
+               ANote0VideoMat5.emissiveColor = new BABYLON.Color3.White();
+               ANote0Video5.material = ANote0VideoMat5;
+               scene.onPointerObservable.add(function (evt) {
+                  if (evt.pickInfo.pickedMesh === ANote0Video5) {
+                     //console.log("picked");
+                     if (ANote0VideoVidTex5.video.paused)
+                        ANote0VideoVidTex5.video.play();
+                     else ANote0VideoVidTex5.video.pause();
+                     console.log(
+                        ANote0VideoVidTex5.video.paused ? "paused" : "playing"
                      );
                   }
                }, BABYLON.PointerEventTypes.POINTERPICK);
