@@ -386,12 +386,12 @@
                      1,
                      1
                   );
-                  result.meshes[0].position.x = -1;
+                  result.meshes[0].position.x = -0.5;
                   result.meshes[0].position.y = -0.961;
-                  result.meshes[0].position.z = -2;
+                  result.meshes[0].position.z = 0;
 
                   rotateX = 0;
-                  rotateY = 188;
+                  rotateY = 122;
                   rotateZ = 0;
 
                   result.meshes[0].rotation = new BABYLON.Vector3(
@@ -412,12 +412,12 @@
                      1,
                      1
                   );
-                  result.meshes[0].position.x = 1;
+                  result.meshes[0].position.x = 0.5;
                   result.meshes[0].position.y = -0.961;
-                  result.meshes[0].position.z = -2;
+                  result.meshes[0].position.z = -1;
 
                   rotateX = 0;
-                  rotateY = 188;
+                  rotateY = 248;
                   rotateZ = 0;
 
                   result.meshes[0].rotation = new BABYLON.Vector3(
@@ -505,7 +505,7 @@
             let scene = createScene();
             engine.runRenderLoop(function () {
                scene.render();
-               // scene.debugLayer.show();
+               scene.debugLayer.show();
             });
 
             //背景色変更
