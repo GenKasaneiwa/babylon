@@ -356,28 +356,28 @@
                }, BABYLON.PointerEventTypes.POINTERPICK);
 
                //video5
-               var planeOpts5 = {
-                  height: 80,
-                  width: 150,
-                  sideOrientation: BABYLON.Mesh.DOUBLESIDE,
-               };
-               var ANote0Video5 = BABYLON.MeshBuilder.CreatePlane(
-                  "plane",
-                  planeOpts5,
-                  scene
-               );
-               var vidPos5 = new BABYLON.Vector3(0, 0, 50);
-               ANote0Video5.position = vidPos5;
-               var ANote0VideoMat5 = new BABYLON.StandardMaterial("m", scene);
-               var ANote0VideoVidTex5 = new BABYLON.VideoTexture(
-                  "vidtex",
-                  "./assets/video/5.mp4",
-                  scene
-               );
-               ANote0VideoMat5.diffuseTexture = ANote0VideoVidTex5;
-               ANote0VideoMat5.roughness = 1;
-               ANote0VideoMat5.emissiveColor = new BABYLON.Color3.White();
-               ANote0Video5.material = ANote0VideoMat5;
+               // var planeOpts5 = {
+               //    height: 80,
+               //    width: 150,
+               //    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               // };
+               // var ANote0Video5 = BABYLON.MeshBuilder.CreatePlane(
+               //    "plane",
+               //    planeOpts5,
+               //    scene
+               // );
+               // var vidPos5 = new BABYLON.Vector3(0, 0, 50);
+               // ANote0Video5.position = vidPos5;
+               // var ANote0VideoMat5 = new BABYLON.StandardMaterial("m", scene);
+               // var ANote0VideoVidTex5 = new BABYLON.VideoTexture(
+               //    "vidtex",
+               //    "./assets/video/5.mp4",
+               //    scene
+               // );
+               // ANote0VideoMat5.diffuseTexture = ANote0VideoVidTex5;
+               // ANote0VideoMat5.roughness = 1;
+               // ANote0VideoMat5.emissiveColor = new BABYLON.Color3.White();
+               // ANote0Video5.material = ANote0VideoMat5;
                // scene.onPointerObservable.add(function (evt) {
                //    if (evt.pickInfo.pickedMesh === ANote0Video5) {
                //       //console.log("picked");
@@ -498,7 +498,7 @@
                   new BABYLON.Vector3(0, 1, 0),
                   scene
                );
-
+               //360度画像
                // let sphere = BABYLON.MeshBuilder.CreateSphere(
                //    "sphere",
                //    { segments: 16, diameter: 2 },
@@ -516,6 +516,18 @@
                // );
 
                // Return the created scene.
+
+               //360動画
+               var videoDome = new BABYLON.VideoDome(
+                  "videoDome",
+                  ["./assets/video/bg02.mp4"],
+                  {
+                     resolution: 100,
+                     clickToPlay: true,
+                  },
+                  scene
+               );
+
                return scene;
             };
 
