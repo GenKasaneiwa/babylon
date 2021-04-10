@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+      <title>Artist Portfolio: Heesoo Kwon Test</title>
+      <!-- BabylonJSのCDN -->
+      <script src="https://preview.babylonjs.com/babylon.js"></script>
+      <!-- Babylon.jsの3DモデルローダーのCDN -->
+      <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+      <!-- 依存ライブラリであるpep.jsのCDN -->
+      <script src="https://code.jquery.com/pep/0.4.1/pep.js"></script>
+   </head>
+   <body>
+      <a href="./index.html" class="back">← Go Back</a>
+      <!-- <h1 class="logo">Heesoo Test Da yo</h1> -->
+      <canvas id="renderCanvas"></canvas>
+
+      <style>
+         html,
+         body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+         }
+
+         #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+         }
+
+         .back {
+            color: #fff;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            display: block;
+         }
+
+         .logo {
+            position: absolute;
+            top: 0px;
+            left: 40px;
+            font-size: 4rem;
+            font-weight: bold;
+            color: #fff;
+         }
+
+         a {
+            outline: none;
+         }
+
+         a:focus,
+         *:focus {
+            outline: none;
+         }
+      </style>
+
+      <script>
+         // canvasの定義
+         let canvas = document.getElementById("renderCanvas");
+         // 3D engineのロード
+         let engine = new BABYLON.Engine(canvas, true);
+
+         window.addEventListener("DOMContentLoaded", function () {
+            // ここにシーンを作るスクリプトを記述する
+
+            let createScene = function () {
+               // sceneオブジェクトの作成・おまじない
+               let scene = new BABYLON.Scene(engine);
+
+               // 移動カメラ
+               // let camera = new BABYLON.FreeCamera(
+               //    "camera",
+               //    new BABYLON.Vector3(0, 5, -10),
+               //    scene
+               // );
+               // カメラの初期方向（target）の座標を設定
+               // camera.setTarget(BABYLON.Vector3.Zero());
+
+               // attachControlを設定
+               // これを設定することでマウスでぐりぐり視点移動ができる
+               // camera.attachControl(canvas, false);
+
+               //定点カメラ
+               var camera = new BABYLON.ArcRotateCamera(
+                  "Camera",
+                  -Math.PI / 2,
+                  Math.PI / 2,
+                  5,
+                  BABYLON.Vector3.Zero(),
+                  scene
+               );
+               camera.attachControl(canvas, true);
+               camera.inputs.attached.mousewheel.detachControl(canvas);
+
+               //360度画像
+               // var dome = new BABYLON.PhotoDome(
+               //    "testdome",
+               //    "./assets/video/bg.mp4",
+               //    {
+               //       resolution: 32,
+               //       size: 1000,
+               //    },
+               //    scene
+               // );
+
+               //image1
+               // const mat1 = new BABYLON.StandardMaterial("");
+               // mat1.diffuseTexture = new BABYLON.Texture(
+               //    "./assets/img/premolt1.jpg"
+               // );
+
+               // const f1 = new BABYLON.Vector4(0, 0, 1, 1); // front image = half the whole image along the width
+               // const b1 = new BABYLON.Vector4(1, 0, 1, 1); // back image = second half along the width
+
+               // const photo1 = BABYLON.MeshBuilder.CreatePlane("photo1", {
+               //    frontUVs: f1,
+               //    backUVs: b1,
+               //    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               //    height: 5,
+               //    width: 6,
+               // });
+               // photo1.material = mat1;
+               // photo1.position.x = -6;
+               // photo1.position.y = 0;
+               // photo1.position.z = 8;
+               // photo1.rotation.y = (332 * Math.PI) / 180;
+
+               // //image1 link func
+               // photo1.actionManager = new BABYLON.ActionManager(scene);
+               // photo1.actionManager.registerAction(
+               //    new BABYLON.ExecuteCodeAction(
+               //       BABYLON.ActionManager.OnPickTrigger,
+               //       function (event) {
+               //          var pickedMesh = event.meshUnderPointer;
+
+               //          window.open("https://www.heesookwon.com/");
+               //       }
+               //    )
+               // );
+
+               //image1
+               // const mat2 = new BABYLON.StandardMaterial("");
+               // mat2.diffuseTexture = new BABYLON.Texture(
+               //    "./assets/img/premolt2.jpg"
+               // );
+
+               // const f2 = new BABYLON.Vector4(0, 0, 1, 1); // front image = half the whole image along the width
+               // const b2 = new BABYLON.Vector4(1, 0, 1, 1); // back image = second half along the width
+
+               // const photo2 = BABYLON.MeshBuilder.CreatePlane("photo2", {
+               //    frontUVs: f2,
+               //    backUVs: b2,
+               //    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               //    height: 5,
+               //    width: 6,
+               // });
+               // photo2.material = mat2;
+               // photo2.position.x = 6;
+               // photo2.position.y = 0;
+               // photo2.position.z = 8;
+               // photo2.rotation.y = (57 * Math.PI) / 180;
+
+               // //image2 link func
+               // photo2.actionManager = new BABYLON.ActionManager(scene);
+               // photo2.actionManager.registerAction(
+               //    new BABYLON.ExecuteCodeAction(
+               //       BABYLON.ActionManager.OnPickTrigger,
+               //       function (event) {
+               //          var pickedMesh = event.meshUnderPointer;
+
+               //          window.open("https://www.heesookwon.com/");
+               //       }
+               //    )
+               // );
+
+               //image1
+               // const mat3 = new BABYLON.StandardMaterial("");
+               // mat3.diffuseTexture = new BABYLON.Texture(
+               //    "./assets/video/video03.gif"
+               // );
+
+               // const f3 = new BABYLON.Vector4(0, 0, 1, 1); // front image = half the whole image along the width
+               // const b3 = new BABYLON.Vector4(1, 0, 1, 1); // back image = second half along the width
+
+               // const photo3 = BABYLON.MeshBuilder.CreatePlane("photo3", {
+               //    frontUVs: f3,
+               //    backUVs: b3,
+               //    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               //    height: 5,
+               //    width: 6,
+               // });
+               // photo3.material = mat3;
+               // photo3.position.x = 0;
+               // photo3.position.y = 6;
+               // photo3.position.z = 8;
+               // photo3.rotation.x = (319 * Math.PI) / 180;
+
+               // //image1 link func
+               // photo3.actionManager = new BABYLON.ActionManager(scene);
+               // photo3.actionManager.registerAction(
+               //    new BABYLON.ExecuteCodeAction(
+               //       BABYLON.ActionManager.OnPickTrigger,
+               //       function (event) {
+               //          var pickedMesh = event.meshUnderPointer;
+
+               //          window.open("https://www.heesookwon.com/");
+               //       }
+               //    )
+               // );
+
+               //video1
+               // var planeOpts1 = {
+               //    height: 2,
+               //    width: 3,
+               //    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               // };
+               // var ANote0Video1 = BABYLON.MeshBuilder.CreatePlane(
+               //    "plane",
+               //    planeOpts1,
+               //    scene
+               // );
+               // var vidPos1 = new BABYLON.Vector3(1.9, 2, 4);
+               // ANote0Video1.position = vidPos1;
+               // var ANote0VideoMat1 = new BABYLON.StandardMaterial("m", scene);
+               // var ANote0VideoVidTex1 = new BABYLON.VideoTexture(
+               //    "vidtex",
+               //    "./assets/video/video01.mp4",
+               //    scene
+               // );
+               // ANote0VideoMat1.diffuseTexture = ANote0VideoVidTex1;
+               // ANote0VideoMat1.roughness = 1;
+               // ANote0VideoMat1.emissiveColor = new BABYLON.Color3.White();
+               // ANote0Video1.material = ANote0VideoMat1;
+               // scene.onPointerObservable.add(function (evt) {
+               //    if (evt.pickInfo.pickedMesh === ANote0Video1) {
+               //       //console.log("picked");
+               //       // ANote0VideoVidTex1.video.pause();
+               //       // if (ANote0VideoVidTex1.video.paused)
+               //       //    ANote0VideoVidTex1.video.play();
+               //       // else ANote0VideoVidTex1.video.pause();
+               //       // console.log(
+               //       //    ANote0VideoVidTex1.video.paused ? "paused" : "playing"
+               //       // );
+               //       window.open(
+               //          "https://www.heesookwon.com/A-Ritual-for-Metamorphosis-1"
+               //       );
+               //    }
+               // }, BABYLON.PointerEventTypes.POINTERPICK);
+
+               // //video2
+               // var planeOpts2 = {
+               //    height: 2,
+               //    width: 3,
+               //    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               // };
+               // var ANote0Video2 = BABYLON.MeshBuilder.CreatePlane(
+               //    "plane",
+               //    planeOpts2,
+               //    scene
+               // );
+               // var vidPos2 = new BABYLON.Vector3(3, 0, 1.5);
+               // ANote0Video2.rotation.y = (37.4 * Math.PI) / 180;
+               // ANote0Video2.position = vidPos2;
+               // var ANote0VideoMat2 = new BABYLON.StandardMaterial("m", scene);
+               // var ANote0VideoVidTex2 = new BABYLON.VideoTexture(
+               //    "vidtex",
+               //    "./assets/video/video02.mp4",
+               //    scene
+               // );
+               // ANote0VideoMat2.diffuseTexture = ANote0VideoVidTex2;
+               // ANote0VideoMat2.roughness = 1;
+               // ANote0VideoMat2.emissiveColor = new BABYLON.Color3.White();
+               // ANote0Video2.material = ANote0VideoMat2;
+               // scene.onPointerObservable.add(function (evt) {
+               //    if (evt.pickInfo.pickedMesh === ANote0Video2) {
+               //       //console.log("picked");
+               //       // if (ANote0VideoVidTex2.video.paused)
+               //       //    ANote0VideoVidTex2.video.play();
+               //       // else ANote0VideoVidTex2.video.pause();
+               //       // console.log(
+               //       //    ANote0VideoVidTex2.video.paused ? "paused" : "playing"
+               //       // );
+               //       window.open("https://www.heesookwon.com/Premolt");
+               //    }
+               // }, BABYLON.PointerEventTypes.POINTERPICK);
+
+               // //video3
+               // var planeOpts3 = {
+               //    height: 2,
+               //    width: 3,
+               //    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               // };
+               // var ANote0Video3 = BABYLON.MeshBuilder.CreatePlane(
+               //    "plane",
+               //    planeOpts3,
+               //    scene
+               // );
+               // var vidPos3 = new BABYLON.Vector3(-2.5, 1.5, 3);
+               // ANote0Video3.position = vidPos3;
+               // var ANote0VideoMat3 = new BABYLON.StandardMaterial("m", scene);
+               // var ANote0VideoVidTex3 = new BABYLON.VideoTexture(
+               //    "vidtex",
+               //    "./assets/video/video03.mp4",
+               //    scene
+               // );
+               // ANote0VideoMat3.diffuseTexture = ANote0VideoVidTex3;
+               // ANote0VideoMat3.roughness = 1;
+               // ANote0VideoMat3.emissiveColor = new BABYLON.Color3.White();
+               // ANote0Video3.material = ANote0VideoMat3;
+               // scene.onPointerObservable.add(function (evt) {
+               //    if (evt.pickInfo.pickedMesh === ANote0Video3) {
+               //       //console.log("picked");
+               //       // if (ANote0VideoVidTex3.video.paused)
+               //       //    ANote0VideoVidTex3.video.play();
+               //       // else ANote0VideoVidTex3.video.pause();
+               //       // console.log(
+               //       //    ANote0VideoVidTex3.video.paused ? "paused" : "playing"
+               //       // );
+               //       window.open("https://www.heesookwon.com/Watertight-Mesh");
+               //    }
+               // }, BABYLON.PointerEventTypes.POINTERPICK);
+
+               // //video4
+               // var planeOpts4 = {
+               //    height: 2,
+               //    width: 3,
+               //    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               // };
+               // var ANote0Video4 = BABYLON.MeshBuilder.CreatePlane(
+               //    "plane",
+               //    planeOpts4,
+               //    scene
+               // );
+               // var vidPos4 = new BABYLON.Vector3(-3, -1, 1.5);
+               // ANote0Video4.position = vidPos4;
+               // ANote0Video4.rotation.y = (125 * Math.PI) / 180;
+               // var ANote0VideoMat4 = new BABYLON.StandardMaterial("m", scene);
+               // var ANote0VideoVidTex4 = new BABYLON.VideoTexture(
+               //    "vidtex",
+               //    "./assets/video/video04.mp4",
+               //    scene
+               // );
+               // ANote0VideoMat4.diffuseTexture = ANote0VideoVidTex4;
+               // ANote0VideoMat4.roughness = 1;
+               // ANote0VideoMat4.emissiveColor = new BABYLON.Color3.White();
+               // ANote0Video4.material = ANote0VideoMat4;
+               // scene.onPointerObservable.add(function (evt) {
+               //    if (evt.pickInfo.pickedMesh === ANote0Video4) {
+               //       // //console.log("picked");
+               //       // if (ANote0VideoVidTex4.video.paused)
+               //       //    ANote0VideoVidTex4.video.play();
+               //       // else ANote0VideoVidTex4.video.pause();
+               //       // console.log(
+               //       //    ANote0VideoVidTex4.video.paused ? "paused" : "playing"
+               //       // );
+               //       window.open(
+               //          "https://www.heesookwon.com/Leymusoom-Ssitgimgut"
+               //       );
+               //    }
+               // }, BABYLON.PointerEventTypes.POINTERPICK);
+
+               //video5
+               // var planeOpts5 = {
+               //    height: 80,
+               //    width: 150,
+               //    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+               // };
+               // var ANote0Video5 = BABYLON.MeshBuilder.CreatePlane(
+               //    "plane",
+               //    planeOpts5,
+               //    scene
+               // );
+               // var vidPos5 = new BABYLON.Vector3(0, 0, 50);
+               // ANote0Video5.position = vidPos5;
+               // var ANote0VideoMat5 = new BABYLON.StandardMaterial("m", scene);
+               // var ANote0VideoVidTex5 = new BABYLON.VideoTexture(
+               //    "vidtex",
+               //    "./assets/video/5.mp4",
+               //    scene
+               // );
+               // ANote0VideoMat5.diffuseTexture = ANote0VideoVidTex5;
+               // ANote0VideoMat5.roughness = 1;
+               // ANote0VideoMat5.emissiveColor = new BABYLON.Color3.White();
+               // ANote0Video5.material = ANote0VideoMat5;
+               // scene.onPointerObservable.add(function (evt) {
+               //    if (evt.pickInfo.pickedMesh === ANote0Video5) {
+               //       //console.log("picked");
+               //       if (ANote0VideoVidTex5.video.paused)
+               //          ANote0VideoVidTex5.video.play();
+               //       else ANote0VideoVidTex5.video.pause();
+               //       console.log(
+               //          ANote0VideoVidTex5.video.paused ? "paused" : "playing"
+               //       );
+               //    }
+               // }, BABYLON.PointerEventTypes.POINTERPICK);
+
+               //▼ 3d model setup ▼--------------------------
+
+               // BABYLON.SceneLoader.ImportMeshAsync(
+               //    "",
+               //    "./assets/model/",
+               //    "human256.glb",
+               //    scene
+               // ).then(function (result) {
+               //    heesoo_human = result.meshes[0].scaling = new BABYLON.Vector3(
+               //       1,
+               //       1,
+               //       1
+               //    );
+               //    result.meshes[0].position.x = -0.5;
+               //    result.meshes[0].position.y = -0.961;
+               //    result.meshes[0].position.z = 0;
+
+               //    rotateX = 0;
+               //    rotateY = 122;
+               //    rotateZ = 0;
+
+               //    result.meshes[0].rotation = new BABYLON.Vector3(
+               //       (rotateX * Math.PI) / 180,
+               //       (rotateY * Math.PI) / 180,
+               //       (rotateZ * Math.PI) / 180
+               //    );
+               // });
+
+               // BABYLON.SceneLoader.ImportMeshAsync(
+               //    "",
+               //    "./assets/model/",
+               //    "snake256.glb",
+               //    scene
+               // ).then(function (result) {
+               //    heesoo_snake = result.meshes[0].scaling = new BABYLON.Vector3(
+               //       1,
+               //       1,
+               //       1
+               //    );
+               //    result.meshes[0].position.x = 0.5;
+               //    result.meshes[0].position.y = -0.961;
+               //    result.meshes[0].position.z = -1;
+
+               //    rotateX = 0;
+               //    rotateY = 248;
+               //    rotateZ = 0;
+
+               //    result.meshes[0].rotation = new BABYLON.Vector3(
+               //       (rotateX * Math.PI) / 180,
+               //       (rotateY * Math.PI) / 180,
+               //       (rotateZ * Math.PI) / 180
+               //    );
+               // });
+
+               // BABYLON.SceneLoader.ImportMeshAsync(
+               //    "",
+               //    "./assets/model/",
+               //    "china10.glb",
+               //    scene
+               // ).then(function (result) {
+               //    heesoo_snake = result.meshes[0].scaling = new BABYLON.Vector3(
+               //       100,
+               //       100,
+               //       100
+               //    );
+               //    result.meshes[0].position.x = 1;
+               //    result.meshes[0].position.y = -0.8;
+               //    result.meshes[0].position.z = -2;
+
+               //    rotateX = 20;
+               //    rotateY = 272;
+               //    rotateZ = 44;
+
+               //    result.meshes[0].rotation = new BABYLON.Vector3(
+               //       (rotateX * Math.PI) / 180,
+               //       (rotateY * Math.PI) / 180,
+               //       (rotateZ * Math.PI) / 180
+               //    );
+               // });
+
+               // BABYLON.SceneLoader.ImportMeshAsync("", "./assets/model/", "test-proccessed.glb", scene).then(function(result) {
+               //    museumMesh = result.meshes[0].scaling = new BABYLON.Vector3(.6,.6,.6);
+
+               //    result.meshes[0].position.x = 2;
+               // });
+
+               // BABYLON.SceneLoader.ImportMeshAsync("", "./assets/model/", "etal_c4d.glb", scene).then(function(result) {
+               //    museumMesh = result.meshes[0].scaling = new BABYLON.Vector3(5,5,5);
+               //    result.meshes[0].position.x = 3;
+               //    result.meshes[0].position.y = 3;
+               //    result.meshes[0].position.z = -8;
+
+               //    rotateX = -12;
+               //    rotateY = -20;
+               //    rotateZ = 2;
+
+               //    result.meshes[0].rotation = new BABYLON.Vector3(rotateX * Math.PI / 180 , rotateY * Math.PI / 180, rotateZ * Math.PI / 180);
+
+               // });
+
+               //△ 3d model setup △--------------------------
+
+               // ライトの作成
+               let light = new BABYLON.HemisphericLight(
+                  "light1",
+                  new BABYLON.Vector3(0, 1, 0),
+                  scene
+               );
+               //360度画像
+               // let sphere = BABYLON.MeshBuilder.CreateSphere(
+               //    "sphere",
+               //    { segments: 16, diameter: 2 },
+               //    scene
+               // );
+
+               // 球のY軸ポジションを設定
+               // sphere.position.y = 1;
+
+               // 地面のオブジェクトを作成
+               // let ground = BABYLON.MeshBuilder.CreateGround(
+               //    "ground1",
+               //    { height: 6, width: 100, subdivisions: 2 },
+               //    scene
+               // );
+
+               // Return the created scene.
+
+               //360動画
+               var videoDome = new BABYLON.VideoDome(
+                  "videoDome",
+                  ["./assets/video/bg06.mp4"],
+                  {
+                     resolution: 72,
+                     clickToPlay: true,
+                  },
+                  scene
+               );
+
+               return scene;
+            };
+
+            let scene = createScene();
+            engine.runRenderLoop(function () {
+               scene.render();
+               // scene.debugLayer.show();
+            });
+
+            //背景色変更
+            scene.clearColor = new BABYLON.Color3(0.5, 0.8, 0.5);
+         });
+
+         window.addEventListener("resize", function () {
+            engine.resize();
+         });
+      </script>
+   </body>
+</html>
