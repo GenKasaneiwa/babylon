@@ -86,33 +86,16 @@
                // camera.attachControl(canvas, false);
 
                //定点カメラ
-               // var camera = new BABYLON.ArcRotateCamera(
-               //    "Camera",
-               //    -Math.PI / 2,
-               //    Math.PI / 2,
-               //    5,
-               //    BABYLON.Vector3.Zero(),
-               //    scene
-               // );
-               // camera.attachControl(canvas, true);
-               // camera.inputs.attached.mousewheel.detachControl(canvas);
-
-               //ジャイロカメラ
-               /********** DEVICE ORIENTATION CAMERA EXAMPLE **************************/
-
-               // This creates and positions a device orientation camera
-               var camera = new BABYLON.DeviceOrientationCamera(
-                  "DevOr_camera",
-                  new BABYLON.Vector3(0, 0, 0),
+               var camera = new BABYLON.ArcRotateCamera(
+                  "Camera",
+                  -Math.PI / 2,
+                  Math.PI / 2,
+                  5,
+                  BABYLON.Vector3.Zero(),
                   scene
                );
-
-               // This targets the camera to scene origin
-               camera.setTarget(new BABYLON.Vector3(0, 0, 10));
-
-               // This attaches the camera to the canvas
                camera.attachControl(canvas, true);
-               /**************************************************************/
+               camera.inputs.attached.mousewheel.detachControl(canvas);
 
                //360度画像
                // var dome = new BABYLON.PhotoDome(
