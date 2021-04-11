@@ -82,7 +82,7 @@
       </style>
 
       <script>
-         function onclick() {
+         function orientation() {
             if (
                DeviceMotionEvent &&
                DeviceMotionEvent.requestPermission &&
@@ -126,7 +126,9 @@
          let engine = new BABYLON.Engine(canvas, true);
 
          window.addEventListener("DOMContentLoaded", function () {
+            orientation();
             // ここにシーンを作るスクリプトを記述する
+
             let createScene = function () {
                // sceneオブジェクトの作成・おまじない
                let scene = new BABYLON.Scene(engine);
