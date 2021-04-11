@@ -13,10 +13,10 @@
    <body>
       <a href="./index.html" class="back">← Go Back :)</a>
       <!-- <h1 class="logo">Heesoo Test Da yo</h1> -->
-      <div class="modal" id="modal">
+      <!-- <div class="modal" id="modal">
          <p>device orientation permission</p>
          <div class="btn" id="btn">OK</div>
-      </div>
+      </div> -->
       <canvas id="renderCanvas"></canvas>
 
       <style>
@@ -82,27 +82,27 @@
       </style>
 
       <script>
-         const modalController = () => {
-            let modal = document.getElementById("modal");
-            let btn = document.getElementById("btn");
-            btn.addEventListener("click", () => {
-               modal.style.display = "none";
-               if (
-                  DeviceMotionEvent &&
-                  DeviceMotionEvent.requestPermission &&
-                  typeof DeviceMotionEvent.requestPermission === "function"
-               ) {
-                  DeviceMotionEvent.requestPermission();
-               }
-               if (
-                  DeviceOrientationEvent &&
-                  DeviceOrientationEvent.requestPermission &&
-                  typeof DeviceOrientationEvent.requestPermission === "function"
-               ) {
-                  DeviceOrientationEvent.requestPermission();
-               }
-            });
-         };
+         // const modalController = () => {
+         //    let modal = document.getElementById("modal");
+         //    let btn = document.getElementById("btn");
+         //    btn.addEventListener("click", () => {
+         //       modal.style.display = "none";
+         //       if (
+         //          DeviceMotionEvent &&
+         //          DeviceMotionEvent.requestPermission &&
+         //          typeof DeviceMotionEvent.requestPermission === "function"
+         //       ) {
+         //          DeviceMotionEvent.requestPermission();
+         //       }
+         //       if (
+         //          DeviceOrientationEvent &&
+         //          DeviceOrientationEvent.requestPermission &&
+         //          typeof DeviceOrientationEvent.requestPermission === "function"
+         //       ) {
+         //          DeviceOrientationEvent.requestPermission();
+         //       }
+         //    });
+         // };
 
          // canvasの定義
          let canvas = document.getElementById("renderCanvas");
@@ -110,8 +110,22 @@
          let engine = new BABYLON.Engine(canvas, true);
 
          window.addEventListener("DOMContentLoaded", function () {
-            // ここにシーンを作るスクリプトを記述する
+            if (
+               DeviceMotionEvent &&
+               DeviceMotionEvent.requestPermission &&
+               typeof DeviceMotionEvent.requestPermission === "function"
+            ) {
+               DeviceMotionEvent.requestPermission();
+            }
+            if (
+               DeviceOrientationEvent &&
+               DeviceOrientationEvent.requestPermission &&
+               typeof DeviceOrientationEvent.requestPermission === "function"
+            ) {
+               DeviceOrientationEvent.requestPermission();
+            }
 
+            // ここにシーンを作るスクリプトを記述する
             let createScene = function () {
                // sceneオブジェクトの作成・おまじない
                let scene = new BABYLON.Scene(engine);
