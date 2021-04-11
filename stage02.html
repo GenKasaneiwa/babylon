@@ -90,6 +90,9 @@
       <script>
          function orientation() {
             alert("test");
+            DeviceMotionEvent.requestPermission();
+            DeviceOrientationEvent.requestPermission();
+
             if (
                DeviceMotionEvent &&
                DeviceMotionEvent.requestPermission &&
