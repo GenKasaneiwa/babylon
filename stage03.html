@@ -179,6 +179,16 @@
 
             var ground = BABYLON.Mesh.CreateGround("ground1", 10, 10, 2, scene);
 
+            var videoDome = new BABYLON.VideoDome(
+               "videoDome",
+               ["./assets/video/stage02.mp4"],
+               {
+                  resolution: 72,
+                  clickToPlay: true,
+               },
+               scene
+            );
+
             return scene;
          };
          var engine;
