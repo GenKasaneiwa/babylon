@@ -82,8 +82,7 @@
       </style>
 
       <script>
-
-         function(){
+         function onclick() {
             if (
                DeviceMotionEvent &&
                DeviceMotionEvent.requestPermission &&
@@ -127,7 +126,6 @@
          let engine = new BABYLON.Engine(canvas, true);
 
          window.addEventListener("DOMContentLoaded", function () {
-
             // ここにシーンを作るスクリプトを記述する
             let createScene = function () {
                // sceneオブジェクトの作成・おまじない
