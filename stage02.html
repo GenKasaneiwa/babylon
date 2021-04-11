@@ -82,6 +82,23 @@
       </style>
 
       <script>
+
+         function(){
+            if (
+               DeviceMotionEvent &&
+               DeviceMotionEvent.requestPermission &&
+               typeof DeviceMotionEvent.requestPermission === "function"
+            ) {
+               DeviceMotionEvent.requestPermission();
+            }
+            if (
+               DeviceOrientationEvent &&
+               DeviceOrientationEvent.requestPermission &&
+               typeof DeviceOrientationEvent.requestPermission === "function"
+            ) {
+               DeviceOrientationEvent.requestPermission();
+            }
+         }
          // const modalController = () => {
          //    let modal = document.getElementById("modal");
          //    let btn = document.getElementById("btn");
@@ -110,20 +127,6 @@
          let engine = new BABYLON.Engine(canvas, true);
 
          window.addEventListener("DOMContentLoaded", function () {
-            if (
-               DeviceMotionEvent &&
-               DeviceMotionEvent.requestPermission &&
-               typeof DeviceMotionEvent.requestPermission === "function"
-            ) {
-               DeviceMotionEvent.requestPermission();
-            }
-            if (
-               DeviceOrientationEvent &&
-               DeviceOrientationEvent.requestPermission &&
-               typeof DeviceOrientationEvent.requestPermission === "function"
-            ) {
-               DeviceOrientationEvent.requestPermission();
-            }
 
             // ここにシーンを作るスクリプトを記述する
             let createScene = function () {
