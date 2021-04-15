@@ -399,7 +399,7 @@
                BABYLON.SceneLoader.ImportMeshAsync(
                   "",
                   "./assets/model/",
-                  "human256.glb",
+                  "C1.glb",
                   scene
                ).then(function (result) {
                   heesoo_human = result.meshes[0].scaling = new BABYLON.Vector3(
@@ -425,7 +425,7 @@
                BABYLON.SceneLoader.ImportMeshAsync(
                   "",
                   "./assets/model/",
-                  "snake256.glb",
+                  "C2.glb",
                   scene
                ).then(function (result) {
                   heesoo_snake = result.meshes[0].scaling = new BABYLON.Vector3(
@@ -451,13 +451,13 @@
                BABYLON.SceneLoader.ImportMeshAsync(
                   "",
                   "./assets/model/",
-                  "snake256.glb",
+                  "C3.glb",
                   scene
                ).then(function (result) {
                   heesoo_snake = result.meshes[0].scaling = new BABYLON.Vector3(
-                     1,
-                     1,
-                     1
+                     0.4,
+                     0.4,
+                     0.4
                   );
                   result.meshes[0].position.x = -0;
                   result.meshes[0].position.y = -1;
