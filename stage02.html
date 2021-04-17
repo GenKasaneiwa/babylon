@@ -539,10 +539,14 @@
                   ["./assets/video/stage02.mp4"],
                   {
                      resolution: 72,
-                     // clickToPlay: true,
+                     clickToPlay: false,
+                     autoPlay: true,
+                     loop: true,
                   },
                   scene
                );
+
+               videoDome.videoTexture.video.play();
 
                return scene;
             };
