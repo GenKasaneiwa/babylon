@@ -547,7 +547,9 @@
                   scene
                );
 
-               videoDome.videoTexture.video.play();
+               scene.onPointerDown = function () {
+                  videoDome.videoTexture.video.play();
+               };
 
                return scene;
             };
