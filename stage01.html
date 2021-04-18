@@ -99,8 +99,14 @@
                   Math.PI / 2,
                   5,
                   BABYLON.Vector3.Zero(),
+
                   scene
                );
+
+               //rotate
+               scene.activeCamera.alpha = -9.0332;
+               scene.activeCamera.beta = 0.6413;
+
                camera.attachControl(canvas, true);
                camera.inputs.attached.mousewheel.detachControl(canvas);
 
