@@ -101,6 +101,7 @@
                   BABYLON.Vector3.Zero(),
                   scene
                );
+
                camera.attachControl(canvas, true);
                camera.inputs.attached.mousewheel.detachControl(canvas);
 
@@ -554,7 +555,7 @@
             let scene = createScene();
             engine.runRenderLoop(function () {
                scene.render();
-               // scene.debugLayer.show();
+               scene.debugLayer.show();
             });
 
             //背景色変更
