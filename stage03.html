@@ -546,6 +546,10 @@
                   scene
                );
 
+               scene.onPointerDown = function () {
+                  videoDome.videoTexture.video.play();
+               };
+
                videoDome.videoTexture.video.play();
 
                return scene;

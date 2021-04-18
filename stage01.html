@@ -539,10 +539,16 @@
                   ["./assets/video/stage01.mp4"],
                   {
                      resolution: 72,
-                     // clickToPlay: true,
+                     clickToPlay: false,
+                     autoPlay: true,
+                     loop: true,
                   },
                   scene
                );
+
+               scene.onPointerDown = function () {
+                  videoDome.videoTexture.video.play();
+               };
 
                return scene;
             };
