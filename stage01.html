@@ -103,7 +103,7 @@
                   scene
                );
 
-               //rotate
+               //rotate for arcCam
                scene.activeCamera.alpha = -9.0332;
                scene.activeCamera.beta = 0.6413;
 
@@ -520,6 +520,7 @@
                   new BABYLON.Vector3(0, 1, 0),
                   scene
                );
+
                //360度画像
                // let sphere = BABYLON.MeshBuilder.CreateSphere(
                //    "sphere",
@@ -555,7 +556,6 @@
                scene.onPointerDown = function () {
                   videoDome.videoTexture.video.play();
                };
-
                return scene;
             };
 
